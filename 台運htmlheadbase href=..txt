@@ -1,0 +1,429 @@
+<html><head><base href="." />
+<meta charset="UTF-8">
+<title>台灣運籌服務科技股份有限公司</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft JhengHei", sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #2C5530;
+    background-color: #F7F9F7;
+}
+
+.header {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+
+.logo-container {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Changed to 600px (200 * 3) */
+    overflow: hidden;
+}
+
+.watermark-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 80px; /* Reduced from 100px to 80px */
+    height: auto;
+    opacity: 0.5; /* Makes the logo semi-transparent */
+    z-index: 2;
+}
+
+.watermark-text {
+    position: absolute;
+    top: 20px; /* Aligned with logo */
+    left: 110px; /* Adjusted position due to smaller logo */
+    color: white;
+    font-size: 28px; /* Increased font size */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    z-index: 2;
+}
+
+.watermark-logo-text {
+    position: absolute;
+    top: 55px; /* Adjusted to center vertically within logo */
+    left: 110px; /* Aligned with logo left edge */
+    color: white;
+    font-size: 22px; /* Decreased font size */
+    font-weight: normal;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    z-index: 2;
+}
+
+.logo-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Changed to cover to fill the entire container */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.logo-image.active {
+    opacity: 1;
+}
+
+.company-title {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background: rgba(46, 139, 87, 0.3);
+    padding: 10px 20px;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+}
+
+.nav {
+    background: #1B4D3E;
+    padding: 1rem 0;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: #90EE90;
+}
+
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+}
+
+.service-section {
+    margin-bottom: 3rem;
+}
+
+.contact-info {
+    background: #E8F5E9;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.footer {
+    background: #1B4D3E;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-card {
+    background: #E8F5E9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    border-left: 4px solid #2E8B57;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card h3 {
+    color: #2E8B57;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.service-card p {
+    color: #1B4D3E;
+    flex-grow: 1;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.eco-bar {
+    fill: #2E8B57;
+    animation: barGrow 1.5s ease-out;
+}
+
+@keyframes barGrow {
+    from {
+        height: 0;
+    }
+    to {
+        height: 80px;
+    }
+}
+
+.truck-body {
+    fill: #FFA500;  /* Changed to orange */
+}
+
+.truck-cabin {
+    fill: #800080;
+}
+
+.truck-wheel {
+    fill: #FFD700;
+}
+
+h2 {
+    color: #2E8B57;
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: #2E8B57;
+}
+
+a:hover {
+    color: #1B4D3E;
+}
+
+.eco-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.leaf {
+    fill: #4CAF50;
+    animation: floatLeaf 3s ease-in-out infinite;
+}
+
+.recycle-symbol {
+    fill: #388E3C;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes floatLeaf {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Added new animations for environmental elements */
+.eco-leaf {
+    fill: #4CAF50;
+    animation: floatAndRotate 4s ease-in-out infinite;
+}
+
+.eco-tree {
+    fill: #2E7D32;
+    animation: sway 3s ease-in-out infinite;
+}
+
+.eco-droplet {
+    fill: #03A9F4;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.eco-sun {
+    fill: #FDD835;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes floatAndRotate {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(10deg); }
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(5deg); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.eco-summary-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.about-image {
+    flex: 0 0 400px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover {
+    transform: scale(1.02);
+}
+
+.about-content {
+    flex: 1;
+}
+
+@media (max-width: 992px) {
+    .eco-summary-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .about-image {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 400px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo-container">
+        <img class="watermark-logo" src="/a/36c13bdd-6802-4efe-a7a8-265b17e366d2" alt="台灣運籌服務科技公司 新Logo" width="80">
+        <div class="watermark-text">台灣運籌服務科技股份有限公司</div>
+        <div class="watermark-logo-text">TLSTI</div>
+        <img class="logo-image" src="/a/867409b9-8b50-455a-9684-3afcf16141aa" alt="台灣運籌服務科技股份有限公司 logo 1" width="100%" height="100%">
+        <img class="logo-image" src="/a/be4ca9d6-6b11-4038-bc5e-62eb4efedb35" alt="台灣運籌服務科技股份有限公司 logo 2" width="100%" height="100%">
+        <img class="logo-image" src="/a/17c6829c-c690-4562-880d-1dfc60a948ee" alt="台灣運籌服務科技股份有限公司 logo 3" width="100%" height="100%">
+        <img class="logo-image" src="/a/e0e53380-97e4-46c3-b0a8-71e7f4a660f0" alt="台灣運籌服務科技股份有限公司 logo 4" width="100%" height="100%">
+        <img class="logo-image" src="/a/accd8824-6b2e-471b-8b4e-7af4cb9c0da7" alt="台灣運籌服務科技股份有限公司 logo 5" width="100%" height="100%">
+        <img class="logo-image" src="/a/48934386-4530-44b9-beec-f075282fdf35" alt="台灣運籌服務科技股份有限公司 logo 6" width="100%" height="100%">
+        <img class="logo-image" src="/a/21252649-18c3-41c4-af5b-cb2192c8b931" alt="台灣運籌服務科技股份有限公司 logo 7" width="100%" height="100%">
+        <h1 class="company-title">台灣運籌服務科技股份有限公司</h1>
+    </div>
+</header>
+
+<nav class="nav">
+    <ul>
+        <li><a href="#about">關於我們</a></li>
+        <li><a href="#services">服務項目</a></li>
+        <li><a href="#contact">聯絡方式</a></li>
+    </ul>
+</nav>
+
+<main class="main-content">
+    <section id="about" class="service-section">
+        <h2>關於我們</h2>
+        <div class="eco-summary-container">
+            <div class="about-content">
+                <img class="about-image" src="/a/4b28476c-64de-4a48-a109-cc44aacea5b3" alt="台運關於我們圖片" style="width: 100%; margin-bottom: 2rem;">
+                <h3 style="color: #2E8B57; margin-bottom: 1rem;">台灣運籌服務科技股份有限公司：引領綠色未來的夥伴</h3>
+                <p style="margin-bottom: 2rem;">台灣運籌服務科技股份有限公司致力於成為台灣領先的廢棄物運輸與處理專家，以創新和環保理念引領行業發展。我們的目標不僅僅是提供高效的運輸服務，更是希望透過專業的廢棄物再利用方案，為環境的永續發展貢獻一份力量。我們秉持責任感和專業操守，為客戶提供安全、高效、可持續的綜合解決方案。</p>
+
+                <h3 style="color: #2E8B57; margin-bottom: 1rem;">我們的價值觀與承諾</h3>
+                <div style="margin-left: 1rem;">
+                    <p style="margin-bottom: 1rem;"><strong style="color: #2E8B57;">環保使命：</strong>我們堅持在運輸及處理過程中採用環保友善技術，減少污染排放。通過廢棄物的高效再生利用，每年成功轉化2500-3000噸工業及生活廢棄物為可再生資源，為減少自然資源消耗盡心盡力。</p>
+                    <p style="margin-bottom: 1rem;"><strong style="color: #2E8B57;">社會責任：</strong>作為廢棄物清除行業的負責任企業，我們積極支持並參與社區環保活動，與地方政府及合作伙伴攜手推動可持續發展，為社會的健康與未來盡一份責任。</p>
+                    <p><strong style="color: #2E8B57;">以客為尊：</strong>我們始終以客戶需求為導向，量身定制最佳解決方案。客戶的滿意是我們不懈的追求，從運輸安全到處理效率，始終追求卓越。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="service-section">
+        <h2>服務項目</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>工業廢棄物運輸</h3>
+                <p>專業的工業廢棄物收集與運輸服務，確保符合環保法規要求。</p>
+            </div>
+            <div class="service-card">
+                <h3>回收物流服務</h3>
+                <p>提供完整的回收物流解決方案，促進資源永續利用。</p>
+            </div>
+            <div class="service-card">
+                <h3>環保顧問服務</h3>
+                <p>提供專業的環保法規諮詢與廢棄物處理建議。</p>
+            </div>
+            <div class="service-card">
+                <h3>污泥資源再生</h3>
+                <p>經過乾燥、碎化、熱處理的污泥進一步進行燒結和成型，可生產不同粒徑的骨材及建築用磚，作為土木建設的基礎材料，達到減少天然資源開採的效果。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-info">
+        <h2>聯絡方式</h2>
+        <p>地址：台北市內湖區內湖路一段396號3樓之1</p>
+        <p>電話：(02)2658-7118</p>
+        <p>Email：<a href="mailto:tlsti@tlsti.com.tw">tlsti@tlsti.com.tw</a></p>
+        <a href="mailto:tlsti@tlsti.com.tw" class="cta-button">立即聯繫我們</a>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2024 台灣運籌服務科技股份有限公司 版權所有</p>
+</footer>
+
+<script>
+const images = document.querySelectorAll('.logo-image');
+let currentIndex = 0;
+
+function switchImage() {
+    images.forEach(img => img.classList.remove('active'));
+    images[currentIndex].classList.add('active');
+    currentIndex = (currentIndex + 1) % images.length;
+}
+
+// Show first image immediately
+switchImage();
+
+// Start the interval
+setInterval(switchImage, 10000);
+</script>
+
+</body></html>
